@@ -1,0 +1,64 @@
+class Main {
+  static class Stock
+  {
+     String name;
+     String symbol;
+     static float closeVal;
+     static float currentVal;
+
+    Stock(String n, String s)
+    {
+      name = n;
+      symbol = s;
+    }
+
+    public  String getName()
+    {
+      return name;
+    }
+
+    public  String getSymbol()
+    {
+      return symbol;
+    }
+
+    public static int getChangePercent()
+    {
+      float percent = ((currentVal - closeVal)/(currentVal*10))*1000f;
+      return Math.round(percent);
+    }
+
+    public void setClosingPrice(float x)
+    {
+      closeVal = x;
+    }
+
+    public void setCurrentPrice(float x)
+    {
+      currentVal = x;
+    }
+
+    public void printStock()
+    {
+      int per = Stock.getChangePercent();
+      System.out.println(name+" stock\n\tSymbol: "+symbol);
+      System.out.println("\tClosing price: "+closeVal);
+      System.out.println("\tCurrent price: "+currentVal);
+      System.out.println("\tChange percent: "+per+"%");
+      
+    }
+  }
+  
+  public static void main(String[] args) {
+    Stock s1 = new Stock("Google", "GOG");
+    Stock s2 = new Stock("Microsoft", "MSF");
+
+    s1.setClosingPrice(134.67f);
+    s1.setCurrentPrice(131.98f);
+    s1.printStock();
+
+    s2.setClosingPrice(156.52f);
+    s2.setCurrentPrice(161.22f);
+    s2.printStock();
+  }
+}
